@@ -1,4 +1,4 @@
-const form = document.querySelector("#prediction-form");
+﻿const form = document.querySelector("#prediction-form");
 const predictionEl = document.querySelector("#prediction");
 const pricePerM2El = document.querySelector("#price-per-m2");
 const statusEl = document.querySelector("#status");
@@ -34,6 +34,7 @@ function setDatalist(id, values) {
 
 function setSelect(id, values) {
   const select = document.querySelector(id);
+  if (!values || values.length === 0) return;
   select.innerHTML = "";
   values.forEach((value) => {
     const option = document.createElement("option");
@@ -101,15 +102,28 @@ function debounce(fn, delay) {
 }
 
 async function init() {
-  const response = await fetch("/api/options");
-  const options = await response.json();
+  let options = {
+    defaults: {},
+    cities: [],
+    postcodes: [],
+    property_types: [],
+    property_subtypes: [],
+    epc_labels: [],
+  };
+
+  try {
+    const response = await fetch("/api/options");
+    if (response.ok) options = await response.json();
+  } catch (error) {
+    statusEl.textContent = "Static form ready";
+  }
 
   setDatalist("#city-options", options.cities);
   setDatalist("#postcode-options", options.postcodes);
   setDatalist("#property-type-options", options.property_types);
   setDatalist("#property-subtype-options", options.property_subtypes);
-  setSelect("#epc-label", options.epc_labels);
-  applyDefaults(options.defaults);
+  setSelect("#epc_label", options.epc_labels);
+  applyDefaults(options.defaults || {});
 
   const debouncedPredict = debounce(predict, 250);
   form.addEventListener("input", debouncedPredict);
@@ -118,3 +132,6 @@ async function init() {
 }
 
 init();
+
+
+

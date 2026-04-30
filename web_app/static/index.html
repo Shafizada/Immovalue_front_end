@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -99,7 +99,17 @@
           <h2>Energy</h2>
           <label>
             EPC label
-            <select name="epc_label" id="epc-label"></select>
+            <select name="epc_label" id="epc_label">
+              <option value="">Select EPC label</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="Unknown">Unknown</option>
+            </select>
           </label>
           <label>
             EPC score
@@ -142,3 +152,6 @@
     <script src="/app.js"></script>
   </body>
 </html>
+
+
+
