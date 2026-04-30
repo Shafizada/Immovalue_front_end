@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apartment Price Predictor</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="result-panel" aria-live="polite">
+        <div>
+          <p class="eyebrow">Antwerp apartment estimate</p>
+          <h1 id="prediction">EUR --</h1>
+          <p class="subvalue" id="price-per-m2">EUR -- per m2 basis</p>
+        </div>
+        <div class="status-line" id="status">Loading model inputs</div>
+      </section>
+
+      <form id="prediction-form" class="form-grid">
+        <section class="form-section">
+          <h2>Location</h2>
+          <label>
+            City
+            <input name="city" list="city-options" autocomplete="address-level2">
+            <datalist id="city-options"></datalist>
+          </label>
+          <label>
+            Postcode
+            <input name="postcode" list="postcode-options" type="number" min="1000" max="9999">
+            <datalist id="postcode-options"></datalist>
+          </label>
+          <label>
+            Property type
+            <input name="property_type" list="property-type-options">
+            <datalist id="property-type-options"></datalist>
+          </label>
+          <label>
+            Property subtype
+            <input name="property_subtype" list="property-subtype-options">
+            <datalist id="property-subtype-options"></datalist>
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Space</h2>
+          <label>
+            Surface area
+            <div class="input-unit">
+              <input name="surface_area_m2" type="number" min="11" step="1">
+              <span>m2</span>
+            </div>
+          </label>
+          <label>
+            Bedrooms
+            <input name="bedrooms" type="number" min="0" step="1">
+          </label>
+          <label>
+            Bathrooms
+            <input name="bathrooms" type="number" min="0" step="1">
+          </label>
+          <label>
+            Floor
+            <input name="floor" type="number" step="1">
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Building</h2>
+          <label>
+            Year built
+            <input name="year_built" type="number" min="1800" max="2035" step="1">
+          </label>
+          <label>
+            Facades
+            <input name="facade_count" type="number" min="0" max="4" step="1">
+          </label>
+          <label>
+            Condition score
+            <input name="condition_score" type="number" min="0" max="5" step="1">
+          </label>
+          <label>
+            Monthly cost
+            <div class="input-unit">
+              <input name="monthly_cost_eur" type="number" min="0" step="10">
+              <span>EUR</span>
+            </div>
+          </label>
+          <label>
+            Cadastral income
+            <div class="input-unit">
+              <input name="cadastral_income_eur" type="number" min="0" step="10">
+              <span>EUR</span>
+            </div>
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>Energy</h2>
+          <label>
+            EPC label
+            <select name="epc_label" id="epc-label"></select>
+          </label>
+          <label>
+            EPC score
+            <input name="epc_score_kwh_m2_year" type="number" min="0" step="1">
+          </label>
+          <label class="switch"><input name="double_glazing_yes_no" type="checkbox"> Double glazing</label>
+          <label class="switch"><input name="energy_renovation_required_yes_no" type="checkbox"> Energy renovation</label>
+          <label class="switch"><input name="electricity_conform_yes_no" type="checkbox"> Electricity conform</label>
+          <label class="switch"><input name="flood_area_yes_no" type="checkbox"> Flood area</label>
+          <label class="switch"><input name="newbuild_yes_no" type="checkbox"> Newbuild</label>
+        </section>
+
+        <section class="form-section wide">
+          <h2>Amenities</h2>
+          <div class="amenity-grid">
+            <label class="switch"><input name="terrace_yes_no" type="checkbox"> Terrace</label>
+            <label class="switch"><input name="garden_yes_no" type="checkbox"> Garden</label>
+            <label class="switch"><input name="garage_yes_no" type="checkbox"> Garage</label>
+            <label class="switch"><input name="parking_yes_no" type="checkbox"> Parking</label>
+            <label class="switch"><input name="lift_yes_no" type="checkbox"> Lift</label>
+          </div>
+          <label>
+            Terrace area
+            <div class="input-unit">
+              <input name="terrace_area_m2" type="number" min="0" step="1">
+              <span>m2</span>
+            </div>
+          </label>
+          <label>
+            Garden area
+            <div class="input-unit">
+              <input name="garden_area_m2" type="number" min="0" step="1">
+              <span>m2</span>
+            </div>
+          </label>
+        </section>
+      </form>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

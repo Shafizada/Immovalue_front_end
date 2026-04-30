@@ -1,0 +1,225 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7f6;
+  color: #17201d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(38, 110, 100, 0.08), transparent 32%),
+    linear-gradient(315deg, rgba(167, 72, 48, 0.07), transparent 36%),
+    #f4f7f6;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 36px;
+}
+
+.result-panel {
+  min-height: 158px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  margin-bottom: 18px;
+  color: #ffffff;
+  background:
+    linear-gradient(120deg, rgba(15, 22, 20, 0.88), rgba(32, 89, 81, 0.9)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='260' viewBox='0 0 900 260'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.18'%3E%3Cpath d='M40 220V80h80v140M140 220V40h120v180M280 220V96h94v124M408 220V60h140v160M574 220V82h112v138M716 220V48h138v172'/%3E%3Cpath d='M60 112h38M60 146h38M60 180h38M166 76h64M166 112h64M166 148h64M166 184h64M304 128h46M304 164h46M434 96h88M434 132h88M434 168h88M604 118h52M604 154h52M748 84h76M748 122h76M748 160h76'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(18, 33, 31, 0.2);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #b7dcd4;
+}
+
+h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.subvalue,
+.status-line {
+  margin: 8px 0 0;
+  color: #d8ebe7;
+  font-size: 15px;
+}
+
+.status-line {
+  min-width: 210px;
+  text-align: right;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-section {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #dce4e1;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(23, 32, 29, 0.06);
+}
+
+.form-section.wide {
+  grid-column: span 4;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.form-section.wide h2,
+.amenity-grid {
+  grid-column: 1 / -1;
+}
+
+h2 {
+  margin: 0 0 2px;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #51615d;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid #cbd6d2;
+  border-radius: 6px;
+  background: #fbfcfc;
+  color: #17201d;
+  font: inherit;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #2d8c7d;
+  outline-offset: 1px;
+  border-color: #2d8c7d;
+}
+
+.input-unit {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border: 1px solid #cbd6d2;
+  border-radius: 6px;
+  background: #fbfcfc;
+}
+
+.input-unit input {
+  border: 0;
+  background: transparent;
+}
+
+.input-unit span {
+  padding: 0 10px;
+  color: #63736f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.switch {
+  min-height: 38px;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #dce4e1;
+  border-radius: 6px;
+  color: #263531;
+  background: #fbfcfc;
+}
+
+.switch input {
+  width: 18px;
+  min-height: 18px;
+  accent-color: #2d8c7d;
+}
+
+.amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 980px) {
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-section.wide {
+    grid-column: span 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .amenity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 10px;
+  }
+
+  .result-panel {
+    min-height: 176px;
+    display: grid;
+    align-items: end;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .status-line {
+    text-align: left;
+    min-width: 0;
+  }
+
+  .form-grid,
+  .form-section.wide {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section.wide {
+    grid-column: span 1;
+  }
+
+  .amenity-grid {
+    grid-template-columns: 1fr;
+  }
+}
