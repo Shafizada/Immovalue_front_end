@@ -1,4 +1,4 @@
-﻿const API_BASE_URL = ""; 
+const API_BASE_URL = "https://immovalue-api.onrender.com"; 
 // For Cloudflare Worker later, use for example:
 // const API_BASE_URL = "https://immovalue-api.sshafizada-shafi.workers.dev";
 
@@ -163,7 +163,7 @@ async function predict() {
 
     predictionEl.textContent = currencyFormatter.format(result.predicted_price);
     pricePerM2El.textContent = `${currencyFormatter.format(result.estimated_price_per_m2)} per m2 basis`;
-    statusEl.textContent = "Ready";
+    statusEl.textContent = "Prediction completed.";
   } catch (error) {
     const result = localPredict(payload);
 
