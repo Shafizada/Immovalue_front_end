@@ -6,6 +6,7 @@ const form = document.querySelector("#prediction-form");
 const predictionEl = document.querySelector("#prediction");
 const pricePerM2El = document.querySelector("#price-per-m2");
 const statusEl = document.querySelector("#status");
+const submitButton = form.querySelector(".submit-button");
 
 const checkboxFields = new Set([
   "terrace_yes_no",
@@ -146,8 +147,11 @@ function localPredict(payload) {
   };
 }
 
-async function predict() {
+async function predict(event) {
+  if (event) event.preventDefault();
+
   statusEl.textContent = "Updating";
+  submitButton.disabled = true;
   const payload = collectPayload();
 
   try {
@@ -170,15 +174,9 @@ async function predict() {
     predictionEl.textContent = currencyFormatter.format(result.predicted_price);
     pricePerM2El.textContent = `${currencyFormatter.format(result.estimated_price_per_m2)} per m2 basis`;
     statusEl.textContent = "Ready - local estimate";
+  } finally {
+    submitButton.disabled = false;
   }
-}
-
-function debounce(fn, delay) {
-  let timer;
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(fn, delay);
-  };
 }
 
 async function init() {
@@ -208,12 +206,8 @@ async function init() {
   setSelect("#epc_label", options.epc_labels || fallbackOptions.epc_labels);
 
   applyDefaults(options.defaults || fallbackOptions.defaults);
-
-  const debouncedPredict = debounce(predict, 250);
-  form.addEventListener("input", debouncedPredict);
-  form.addEventListener("change", debouncedPredict);
-
-  predict();
+  statusEl.textContent = "Ready to predict.";
+  form.addEventListener("submit", predict);
 }
 
 init();

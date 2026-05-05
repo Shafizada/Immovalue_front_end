@@ -95,6 +95,41 @@ h1 {
   grid-column: 1 / -1;
 }
 
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  min-height: 42px;
+  min-width: 132px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #2d8c7d;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(45, 140, 125, 0.22);
+}
+
+.submit-button:hover {
+  background: #257668;
+}
+
+.submit-button:focus {
+  outline: 2px solid #0f2f2a;
+  outline-offset: 2px;
+}
+
+.submit-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 h2 {
   margin: 0 0 2px;
   font-size: 15px;
